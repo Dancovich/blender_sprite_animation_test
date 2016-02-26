@@ -34,6 +34,11 @@ public class BlenderSpriteAnimation extends ApplicationAdapter {
         assetManager.finishLoading();
 
         critterModelInstance = new ModelInstance((Model) assetManager.get("critter.g3dj"));
+
+        // This is needed so the alpha channel of the textures get's used. The G3D
+        // importer only sets this automatically if the material in the G3D file
+        // has an opacity attribute different than 1.0. It would be nice
+        // to have a "blended: [true, false]" attribute on the G3D file specification.
         critterModelInstance.getMaterial("body_material").set(new BlendingAttribute(true, 1f));
         critterModelInstance.getMaterial("hat_material").set(new BlendingAttribute(true, 1f));
 
